@@ -9,39 +9,36 @@
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="./js/principal.js" defer></script> <!-- 'defer' para garantir que o script carregue após o HTML -->
+    <script src="./js/principal.js" defer></script>
 </head>
 
 <body>
-    <header id="header-container" >
+    <header id="header-container">
         <h1>Hackthon</h1>
         <a href="index.html">
-            <button class="btn btn-light" class="me-2">Logout</button>
+            <button class="btn btn-light">Logout</button>
         </a>
         <a href="matricular_Atividades.html">
-            <button class="btn btn-light" class="me-2">Registrar Atividade</button>
+            <button class="btn btn-light">Registrar Atividade</button>
         </a>
         <a href="matricular_Turmas.html">
-            <button class="btn btn-light" class="me-2">Matricular Turma</button>
+            <button class="btn btn-light">Matricular Turma</button>
         </a>
     </header>
     <main>
         <div id="search-container">
             <select class="form-select" id="select-course">
                 <option value="" disabled selected>Selecione a turma</option>
-                <!-- Aqui serão exibidas as turmas cadastradas -->
             </select>
-            <button class="btn btn-primary ms-2 " id="search-button">Pesquisar</button>
-            <button class="btn btn-warning ms-2" id="edit-turma-button" disabled>Editar</button>
-            <button class="btn btn-danger ms-2" id="delete-turma-button" disabled>Deletar</button>
+            <button class="btn btn-primary ms-2" id="search-button">Pesquisar</button>
+            <button class="btn btn-warning ms-2" id="edit-turma-button" >Editar</button>
+            <button class="btn btn-danger ms-2" id="delete-turma-button" >Deletar</button>
         </div>
-
-        <!-- Adicionado um elemento para exibir o nome do professor -->
 
         <table class="table">
             <thead>
                 <tr>
-                    <th>Codigo (Turma)</th>
+                    <th>Código (Turma)</th>
                     <th>Atividades</th>
                     <th>Descrição</th>
                     <th>Data de Entrega</th>
@@ -50,7 +47,6 @@
                 </tr>
             </thead>
             <tbody id="table-body">
-                <!-- Aqui serão exibidos os dados das turmas e atividades -->
             </tbody>
         </table>
     </main>

@@ -3,6 +3,7 @@ const url = "http://localhost:3000/api"; // sua URL da API
 async function login(event) {
     event.preventDefault(); 
 
+    
     const email = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
