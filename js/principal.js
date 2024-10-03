@@ -1,5 +1,7 @@
+
 const url = "http://localhost:3000/api";
 let selectedTurmaId = null;
+const email = localStorage.getItem('professorEmail');
 
 async function selectTurma(id) {
     selectedTurmaId = id;
@@ -7,9 +9,15 @@ async function selectTurma(id) {
     document.getElementById('delete-turma-button').disabled = false;
 }
 
-async function loadTurmas() {
+async function carregarTurmas() {
+    if (!email) {
+        console.error("E-mail do professor não encontrado.");
+        return;
+    }
+
+    console.log(email)
     try {
-        const response = await axios.get(`${url}/turma`);
+        const response = await axios.get(`${url}/turma/${email}`);
 
         if (!response.data || !response.data.result) {
             console.error("Nenhuma turma encontrada.");
@@ -84,7 +92,7 @@ document.getElementById('delete-turma-button').addEventListener('click', functio
 
 //atividades
 
-async function loadAtividades() {
+async function carregarAtividades() {
     if (!selectedTurmaId) {
         return;
     }
@@ -119,7 +127,7 @@ async function loadAtividades() {
 async function editAtividade(id) {
     const nome = prompt("Novo nome da atividade:");
     const descricao = prompt("Nova descrição da atividade:");
-    const data_entrega = prompt("Nova data de entrega:");
+    const data_entrega = prompt("Nova data de entrega: AAAA-MM-DD");
     const peso_nota = prompt("Novo peso da nota:");
     const turma_id = prompt("ID da turma (caso mude):");
     
@@ -127,7 +135,7 @@ async function editAtividade(id) {
         axios.put(`${url}/atividades/${id}`, { nome, descricao, data_entrega, peso_nota, turma_id })
             .then(response => {
                 alert("Atividade alterada com sucesso!");
-                loadAtividades(selectedTurmaId);
+                location.reload()
 
             })
             .catch(error => {
@@ -146,7 +154,7 @@ async function deleteAtividade(id) {
         axios.delete(`${url}/atividades/${id}`)
             .then(response => {
                 alert(response.data.result);
-                loadAtividades(selectedTurmaId); 
+                location.reload()
             })
             .catch(error => {
                 console.error("Erro ao deletar atividade:", error);
@@ -157,9 +165,9 @@ async function deleteAtividade(id) {
 // Chame loadAtividades ao clicar no botão "Pesquisar"
 document.getElementById('search-button').addEventListener('click', function () {
     selectedTurmaId = document.getElementById('select-course').value;
-    loadAtividades();
+    carregarAtividades();
 });
 
 window.onload = function () {
-    loadTurmas();
+    carregarTurmas();
 };

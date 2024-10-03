@@ -1,10 +1,11 @@
 const url = "http://localhost:3000/api";
+const email = localStorage.getItem('professorEmail');
 
 async function carregarTurmas() {
     try {
-        const response = await axios.get(`${url}/turma`);
+        const response = await axios.get(`${url}/turma/${email}`);
         const turmas = response.data.result;
-
+        console.log(turmas)
         console.log("Turmas carregadas:", turmas); 
 
         const selectCourse = document.getElementById('select-course');
@@ -52,5 +53,4 @@ async function saveAtividade() {
 
 window.onload = function() {
     carregarTurmas(); 
-    carregarProfessores(); 
 };

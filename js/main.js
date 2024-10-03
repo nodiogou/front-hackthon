@@ -14,6 +14,7 @@ async function login(event) {
         });
 
         if (response.status === 200) {
+            localStorage.setItem('professorEmail', email);
             window.location.href = 'principal.html';
         } else {
             alert("Login falhou. Verifique suas credenciais.");
