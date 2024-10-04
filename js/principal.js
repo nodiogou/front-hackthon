@@ -42,9 +42,10 @@ async function carregarTurmas() {
 async function editTurma(id) {
     const nome = prompt("Novo nome da turma:");
     const periodo_letivo = prompt("Novo período letivo:");
+    const professor_id = prompt("ID do professor: );
 
     if (nome && periodo_letivo) {
-        axios.put(`${url}/turma/${id}`, { nome, periodo_letivo })
+        axios.put(`${url}/turma/${id}`, { nome, periodo_letivo,professor_id })
             .then(response => {
                 alert("Turma alterada com sucesso!");
                 location.reload(); 
